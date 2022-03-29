@@ -6,80 +6,211 @@
 //
 
 import SpriteKit
-import GameplayKit
+
+struct PhysicsCategory {
+    static let orbit1: UInt32 = 0x1 << 1
+    static let playerName: UInt32 = 0x1 << 2
+}
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    let planet = SKShapeNode(circleOfRadius: 40)
+    
+    let player = SKShapeNode( circleOfRadius: 10)
+    
+    let pink = [ SKColor.init(red: 1, green: 0.078, blue: 0.914, alpha: 1), SKColor.init(red: 1, green: 0.078, blue: 0.686, alpha: 1), SKColor.init(red: 0.855, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.694, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.541, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.463, green: 0.078, blue: 1, alpha: 1)]
     
     override func didMove(to view: SKView) {
+        backgroundColor = SKColor.init(red: 0.078, green: 0, blue: 0.184, alpha: 1)
+            circlePath1()
+            circlePath2()
+            circlePath3()
+            addPlanet()
+            addPlayer()
+    }
+    
+    func addPlayer(){
+        player.fillColor = .init(red: 0.451, green: 1, blue: 0.78, alpha: 1)
+        player.strokeColor = player.fillColor
+        player.position = CGPoint(x: size.width / 2, y: size.width / 4)
+        player.name = "playerName"
+        let playerMask = SKPhysicsBody(circleOfRadius: 10)
+        playerMask.categoryBitMask = PhysicsCategory.playerName
+        playerMask.affectedByGravity = false
+        player.physicsBody = playerMask
+        addChild(player)
+    }
+    
+    func addPlanet(){
+        planet.fillColor = .init(red: 0.78, green: 0.914, blue: 1, alpha: 1)
+        planet.strokeColor = planet.fillColor
+        planet.position = CGPoint(x: size.width / 2, y: size.height / 1.5)
+        addChild(planet)
+        let planetAnimation = SKAction.rotate(byAngle: 2, duration: 5)
+        planet.run(SKAction.repeatForever(planetAnimation))
+    }
+    
+//    orbuta più interna
+    func circlePath1(){
+         let path = UIBezierPath()
+         path.move(to: CGPoint(x: 0, y: -95))
+         path.addLine(to: CGPoint(x: 0, y: -100))
+         path.addArc(withCenter: CGPoint.zero,
+                     radius: 100,
+                     startAngle: CGFloat(3.0 * .pi/2),
+                     endAngle: CGFloat(0),
+                     clockwise: true)
+         path.addLine(to: CGPoint(x: 95, y: 0))
+         path.addArc(withCenter: CGPoint.zero,
+                     radius: 95,
+                     startAngle: CGFloat(0.0),
+                     endAngle: CGFloat(3.0 * .pi/2),
+                     clockwise: false)
+        let circle = duplicateCircles1(path, clockwise: false)
+        circle.position = CGPoint(x: size.width / 2, y: size.height / 1.5)
+        addChild(circle)
+        let rotate = SKAction.rotate(byAngle: 2.0 * CGFloat(1.0 * .pi), duration: 8.0)
+        circle.run(SKAction.repeatForever(rotate))
+    }
+//    orbita centrale
+    func circlePath2(){
+         let path = UIBezierPath()
+         path.move(to: CGPoint(x: 0, y: -115))
+         path.addLine(to: CGPoint(x: 0, y: -110))
+         path.addArc(withCenter: CGPoint.zero,
+                     radius: 110,
+                     startAngle: CGFloat(3.0 * .pi/2),
+                     endAngle: CGFloat(0),
+                     clockwise: true)
+         path.addLine(to: CGPoint(x: 115, y: 0))
+         path.addArc(withCenter: CGPoint.zero,
+                     radius: 115,
+                     startAngle: CGFloat(0.0),
+                     endAngle: CGFloat(3.0 * .pi/2),
+                     clockwise: false)
+        let circle = duplicateCircles2(path, clockwise: true)
+        circle.position = CGPoint(x: size.width/2, y: size.height / 1.5)
+        addChild(circle)
+        let rotate = SKAction.rotate(byAngle: -2.0 * CGFloat(1.0 * .pi), duration: 5.0)
+        circle.run(SKAction.repeatForever(rotate))
+    }
+//orbita esterna
+    func circlePath3(){
+         let path = UIBezierPath()
+         path.move(to: CGPoint(x: 0, y: -130))
+         path.addLine(to: CGPoint(x: 0, y: -125))
+         path.addArc(withCenter: CGPoint.zero,
+                     radius: 125,
+                     startAngle: CGFloat(3.0 * .pi/2),
+                     endAngle: CGFloat(0),
+                     clockwise: true)
+         path.addLine(to: CGPoint(x: 130, y: 0))
+         path.addArc(withCenter: CGPoint.zero,
+                     radius: 130,
+                     startAngle: CGFloat(0.0),
+                     endAngle: CGFloat(3.0 * .pi/2),
+                     clockwise: false)
+        let circle = duplicateCircle3(path, clockwise: true)
+        circle.position = CGPoint(x: size.width/2, y: size.height / 1.5)
+        addChild(circle)
+        let rotate = SKAction.rotate(byAngle: 2.0 * CGFloat(1.0 * .pi), duration: 4.0)
+        circle.run(SKAction.repeatForever(rotate))
+    }
+    
+    func duplicateCircles1(_ path: UIBezierPath, clockwise: Bool) -> SKNode{
+        let duplication = SKNode()
+        var speculare = CGFloat ( 1.0 * .pi)
+        if !clockwise {
+            speculare *= -1
+        }
+        for i in 0...1    {
+            let section = SKShapeNode(path: path.cgPath)
+//            crea una maschera che ha una fisica che è ugale al path e alla forma del semicerchio
+            let sectionMask = SKPhysicsBody(edgeLoopFrom: path.cgPath)
+            sectionMask.categoryBitMask = PhysicsCategory.orbit1
+            sectionMask.affectedByGravity = false
+//           l'ho messo pari ad 1 perchè deve avere una collisione col player
+            sectionMask.collisionBitMask = 1
+//            messo perchè deve esserci il player che si deve scontrare
+            sectionMask.contactTestBitMask = PhysicsCategory.playerName
+          
+            section.physicsBody = sectionMask
+            section.fillColor = pink[i]
+            section.strokeColor = pink[i]
+            section.zRotation = speculare * CGFloat(i);
+            section.name = "orbit1"
+            duplication.addChild(section)
+          }
+
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+        return duplication
+    }
+    
+    func duplicateCircles2(_ path: UIBezierPath, clockwise: Bool) -> SKNode{
+        let duplication = SKNode()
+        var speculare = CGFloat ( 1.0 * .pi)
+        if !clockwise {
+            speculare *= -1
         }
+        for i in 2...3  {
+            let section = SKShapeNode(path: path.cgPath)
+            let sectionMask = SKPhysicsBody(edgeLoopFrom: path.cgPath)
+            sectionMask.categoryBitMask = PhysicsCategory.orbit1
+            sectionMask.affectedByGravity = false
+            sectionMask.collisionBitMask = 1
+            sectionMask.contactTestBitMask = PhysicsCategory.playerName
+            section.fillColor = pink[i]
+            section.strokeColor = pink[i]
+            section.zRotation = speculare * CGFloat(i);
+            section.name = "orbit2"
+            duplication.addChild(section)
+          }
+
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+        return duplication
+    }
+    
+    func duplicateCircle3(_ path: UIBezierPath, clockwise: Bool) -> SKNode{
+        let duplication = SKNode()
+        var specchia = CGFloat ( 3.0 * .pi / 4)
+        if !clockwise {
+            specchia *= 1
+        }
+        for i in 4...5 {
+            let section = SKShapeNode(path: path.cgPath)
+            let sectionMask = SKPhysicsBody(edgeLoopFrom: path.cgPath)
+            sectionMask.categoryBitMask = PhysicsCategory.orbit1
+            sectionMask.affectedByGravity = false
+            sectionMask.collisionBitMask = 1
+            sectionMask.contactTestBitMask = PhysicsCategory.playerName
+            section.fillColor = pink[i]
+            section.strokeColor = pink[i]
+            section.zRotation = specchia * CGFloat(i);
+            section.name = "orbit3"
+            duplication.addChild(section)
+          }
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
+        return duplication
+        
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
+ 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+        guard let touch = touches.first else {
+            return
         }
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
+        let touchLocation = touch.location(in: self)
+        let touchedNode = atPoint(touchLocation)
+
+        if(touchedNode.name == "playerName"){
+            player.position = CGPoint(x: 100, y: 100)
+        }
+        
+        }
+        
+
     
     
     override func update(_ currentTime: TimeInterval) {
