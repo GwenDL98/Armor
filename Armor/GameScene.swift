@@ -30,7 +30,8 @@ class GameScene: SKScene {
     }
     
     func addPlayer(){
-        player.fillColor = .init(red: 0.451, green: 1, blue: 0.78, alpha: 1)
+//        player.fillColor = .init(red: 0.949, green: 1, blue: 0.878, alpha: 1)
+        player.fillColor = .init(red: 0.961, green: 0.878, blue: 1, alpha: 1)
         player.strokeColor = player.fillColor
         player.position = CGPoint(x: size.width / 2, y: size.width / 4)
         player.name = "playerName"
@@ -42,12 +43,12 @@ class GameScene: SKScene {
     }
     
     func addPlanet(){
-        planet.fillColor = .init(red: 0.78, green: 0.914, blue: 1, alpha: 1)
+//        planet.fillColor = .init(red: 0.878, green: 0.98, blue: 1, alpha: 1)
+        planet.fillColor = .init(red: 0.878, green: 0.948, blue: 1, alpha: 1)
         planet.strokeColor = planet.fillColor
         planet.position = CGPoint(x: size.width / 2, y: size.height / 1.5)
         addChild(planet)
-        let planetAnimation = SKAction.rotate(byAngle: 2, duration: 5)
-        planet.run(SKAction.repeatForever(planetAnimation))
+    
     }
     
 //    orbuta più interna
@@ -66,10 +67,10 @@ class GameScene: SKScene {
                      startAngle: CGFloat(0.0),
                      endAngle: CGFloat(3.0 * .pi/2),
                      clockwise: false)
-        let circle = duplicateCircles1(path, clockwise: false)
+        let circle = duplicateCircles1(path, clockwise: true)
         circle.position = CGPoint(x: size.width / 2, y: size.height / 1.5)
         addChild(circle)
-        let rotate = SKAction.rotate(byAngle: 2.0 * CGFloat(1.0 * .pi), duration: 8.0)
+        let rotate = SKAction.rotate(byAngle: 2.0 * CGFloat(1.0 * .pi), duration: 6.0)
         circle.run(SKAction.repeatForever(rotate))
     }
 //    orbita centrale
@@ -194,7 +195,7 @@ class GameScene: SKScene {
         
     }
     
- 
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
