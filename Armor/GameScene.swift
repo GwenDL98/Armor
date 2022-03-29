@@ -45,10 +45,18 @@ class GameScene: SKScene {
     }
     
     func addPlanet(){
+        let score = SKLabelNode(fontNamed: "Menlo")
+        score.text = "XX"
+        score.fontSize = 30
+        score.zPosition = 2
+        score.fontColor = SKColor.init(red: 1, green: 0.078, blue: 0.765, alpha: 1)
+        score.position = CGPoint(x: frame.size.width / 2 , y: frame.size.height / 1.43 )
+        addChild(score)
         planet.fillColor = .init(red: 0.678, green: 1, blue: 0.184, alpha: 1)
         planet.strokeColor = .init(red: 0.796, green: 1, blue: 0.486, alpha: 1)
         planet.glowWidth = 1
-        planet.position = CGPoint(x: size.width / 2, y: size.height / 1.5)
+        planet.zPosition = 1
+        planet.position = CGPoint(x: size.width / 2, y: size.height / 1.4)
         addChild(planet)
     
     }
@@ -70,7 +78,7 @@ class GameScene: SKScene {
                      endAngle: CGFloat(3.0 * .pi/2),
                      clockwise: false)
         let circle = duplicateCircles1(path, clockwise: true)
-        circle.position = CGPoint(x: size.width / 2, y: size.height / 1.5)
+        circle.position = CGPoint(x: size.width / 2, y: size.height / 1.4)
         addChild(circle)
         let rotate = SKAction.rotate(byAngle: 2.0 * CGFloat(1.0 * .pi), duration: 6.0)
         circle.run(SKAction.repeatForever(rotate))
@@ -92,7 +100,7 @@ class GameScene: SKScene {
                      endAngle: CGFloat(3.0 * .pi/2),
                      clockwise: false)
         let circle = duplicateCircles2(path, clockwise: true)
-        circle.position = CGPoint(x: size.width/2, y: size.height / 1.5)
+        circle.position = CGPoint(x: size.width/2, y: size.height / 1.4)
         addChild(circle)
         let rotate = SKAction.rotate(byAngle: -2.0 * CGFloat(1.0 * .pi), duration: 5.0)
         circle.run(SKAction.repeatForever(rotate))
@@ -114,7 +122,7 @@ class GameScene: SKScene {
                      endAngle: CGFloat(3.0 * .pi/2),
                      clockwise: false)
         let circle = duplicateCircle3(path, clockwise: true)
-        circle.position = CGPoint(x: size.width/2, y: size.height / 1.5)
+        circle.position = CGPoint(x: size.width/2, y: size.height / 1.4)
         addChild(circle)
         let rotate = SKAction.rotate(byAngle: 2.0 * CGFloat(1.0 * .pi), duration: 4.0)
         circle.run(SKAction.repeatForever(rotate))
