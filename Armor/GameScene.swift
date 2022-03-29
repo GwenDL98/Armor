@@ -18,7 +18,9 @@ class GameScene: SKScene {
     
     let player = SKShapeNode( circleOfRadius: 10)
     
-    let pink = [ SKColor.init(red: 1, green: 0.078, blue: 0.914, alpha: 1), SKColor.init(red: 1, green: 0.078, blue: 0.686, alpha: 1), SKColor.init(red: 0.855, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.694, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.541, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.463, green: 0.078, blue: 1, alpha: 1)]
+    let fill = [SKColor.init(red: 1, green: 0.078, blue: 0.765, alpha: 1), SKColor.init(red: 1, green: 0.424, blue: 0.898, alpha: 1), SKColor.init(red: 1, green: 0.078, blue: 0.686, alpha: 1), SKColor.init(red: 0.855, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.694, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.541, green: 0.078, blue: 1, alpha: 1)]
+  
+    let border = [SKColor.init(red: 1, green: 0.424, blue: 0.898, alpha: 1), SKColor.init(red: 1, green: 0.424, blue: 0.898, alpha: 1), SKColor.init(red: 1, green: 0.424, blue: 0.898, alpha: 1), SKColor.init(red: 1, green: 0.078, blue: 0.686, alpha: 1), SKColor.init(red: 0.855, green: 0.078, blue: 1, alpha: 1),  SKColor.init(red: 0.694, green: 0.078, blue: 1, alpha: 1)]
     
     override func didMove(to view: SKView) {
         backgroundColor = SKColor.init(red: 0.078, green: 0, blue: 0.184, alpha: 1)
@@ -30,9 +32,9 @@ class GameScene: SKScene {
     }
     
     func addPlayer(){
-//        player.fillColor = .init(red: 0.949, green: 1, blue: 0.878, alpha: 1)
-        player.fillColor = .init(red: 0.961, green: 0.878, blue: 1, alpha: 1)
-        player.strokeColor = player.fillColor
+        player.fillColor = .init(red: 0.678, green: 1, blue: 0.184, alpha: 1)
+        player.strokeColor = .init(red: 0.796, green: 1, blue: 0.486, alpha: 1)
+        player.glowWidth = 1
         player.position = CGPoint(x: size.width / 2, y: size.width / 4)
         player.name = "playerName"
         let playerMask = SKPhysicsBody(circleOfRadius: 10)
@@ -43,9 +45,9 @@ class GameScene: SKScene {
     }
     
     func addPlanet(){
-//        planet.fillColor = .init(red: 0.878, green: 0.98, blue: 1, alpha: 1)
-        planet.fillColor = .init(red: 0.878, green: 0.948, blue: 1, alpha: 1)
-        planet.strokeColor = planet.fillColor
+        planet.fillColor = .init(red: 0.678, green: 1, blue: 0.184, alpha: 1)
+        planet.strokeColor = .init(red: 0.796, green: 1, blue: 0.486, alpha: 1)
+        planet.glowWidth = 1
         planet.position = CGPoint(x: size.width / 2, y: size.height / 1.5)
         addChild(planet)
     
@@ -136,8 +138,9 @@ class GameScene: SKScene {
             sectionMask.contactTestBitMask = PhysicsCategory.playerName
           
             section.physicsBody = sectionMask
-            section.fillColor = pink[i]
-            section.strokeColor = pink[i]
+            section.fillColor = fill[i]
+            section.strokeColor = border[i]
+            section.glowWidth = 1
             section.zRotation = speculare * CGFloat(i);
             section.name = "orbit1"
             duplication.addChild(section)
@@ -160,8 +163,9 @@ class GameScene: SKScene {
             sectionMask.affectedByGravity = false
             sectionMask.collisionBitMask = 1
             sectionMask.contactTestBitMask = PhysicsCategory.playerName
-            section.fillColor = pink[i]
-            section.strokeColor = pink[i]
+            section.fillColor = fill[i]
+            section.strokeColor = border[i]
+            section.glowWidth = 1
             section.zRotation = speculare * CGFloat(i);
             section.name = "orbit2"
             duplication.addChild(section)
@@ -184,8 +188,9 @@ class GameScene: SKScene {
             sectionMask.affectedByGravity = false
             sectionMask.collisionBitMask = 1
             sectionMask.contactTestBitMask = PhysicsCategory.playerName
-            section.fillColor = pink[i]
-            section.strokeColor = pink[i]
+            section.fillColor = fill[i]
+            section.strokeColor = border[i]
+            section.glowWidth = 1
             section.zRotation = specchia * CGFloat(i);
             section.name = "orbit3"
             duplication.addChild(section)
