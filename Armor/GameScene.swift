@@ -18,12 +18,16 @@ class GameScene: SKScene {
     
     let player = SKShapeNode( circleOfRadius: 10)
     
-    let fill = [SKColor.init(red: 1, green: 0.078, blue: 0.765, alpha: 1), SKColor.init(red: 1, green: 0.424, blue: 0.898, alpha: 1), SKColor.init(red: 1, green: 0.078, blue: 0.686, alpha: 1), SKColor.init(red: 0.855, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.694, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.541, green: 0.078, blue: 1, alpha: 1)]
+    let fill = [SKColor.init(red: 1, green: 0.078, blue: 0.765, alpha: 1), SKColor.init(red: 1, green: 0.424, blue: 0.898, alpha: 1),
+                SKColor.init(red: 1, green: 0.078, blue: 0.686, alpha: 1), SKColor.init(red: 0.855, green: 0.078, blue: 1, alpha: 1),
+                SKColor.init(red: 0.694, green: 0.078, blue: 1, alpha: 1), SKColor.init(red: 0.541, green: 0.078, blue: 1, alpha: 1)]
   
-    let border = [SKColor.init(red: 1, green: 0.424, blue: 0.898, alpha: 1), SKColor.init(red: 1, green: 0.424, blue: 0.898, alpha: 1), SKColor.init(red: 1, green: 0.424, blue: 0.898, alpha: 1), SKColor.init(red: 1, green: 0.078, blue: 0.686, alpha: 1), SKColor.init(red: 0.855, green: 0.078, blue: 1, alpha: 1),  SKColor.init(red: 0.694, green: 0.078, blue: 1, alpha: 1)]
+    let border = [SKColor.init(red: 1, green: 0.31, blue: 0.824, alpha: 1), SKColor.init(red: 1, green: 0.576, blue: 0.925, alpha: 1),
+                  SKColor.init(red: 1, green: 0.231, blue: 0.737, alpha: 1),SKColor.init(red: 0.878, green: 0.231, blue: 1, alpha: 1),
+                  SKColor.init(red: 0.745, green: 0.231, blue: 1, alpha: 1),SKColor.init(red: 0.62, green: 0.231, blue: 1, alpha: 1)]
     
     override func didMove(to view: SKView) {
-        backgroundColor = SKColor.init(red: 0.078, green: 0, blue: 0.184, alpha: 1)
+    backgroundColor = SKColor.init(red: 0.078, green: 0, blue: 0.184, alpha: 1)
             circlePath1()
             circlePath2()
             circlePath3()
@@ -65,9 +69,9 @@ class GameScene: SKScene {
     func circlePath1(){
          let path = UIBezierPath()
          path.move(to: CGPoint(x: 0, y: -95))
-         path.addLine(to: CGPoint(x: 0, y: -100))
+         path.addLine(to: CGPoint(x: 0, y: -98))
          path.addArc(withCenter: CGPoint.zero,
-                     radius: 100,
+                     radius: 98,
                      startAngle: CGFloat(3.0 * .pi/2),
                      endAngle: CGFloat(0),
                      clockwise: true)
@@ -87,9 +91,9 @@ class GameScene: SKScene {
     func circlePath2(){
          let path = UIBezierPath()
          path.move(to: CGPoint(x: 0, y: -115))
-         path.addLine(to: CGPoint(x: 0, y: -110))
+         path.addLine(to: CGPoint(x: 0, y: -112))
          path.addArc(withCenter: CGPoint.zero,
-                     radius: 110,
+                     radius: 112,
                      startAngle: CGFloat(3.0 * .pi/2),
                      endAngle: CGFloat(0),
                      clockwise: true)
@@ -109,9 +113,9 @@ class GameScene: SKScene {
     func circlePath3(){
          let path = UIBezierPath()
          path.move(to: CGPoint(x: 0, y: -130))
-         path.addLine(to: CGPoint(x: 0, y: -125))
+         path.addLine(to: CGPoint(x: 0, y: -127))
          path.addArc(withCenter: CGPoint.zero,
-                     radius: 125,
+                     radius: 127,
                      startAngle: CGFloat(3.0 * .pi/2),
                      endAngle: CGFloat(0),
                      clockwise: true)
