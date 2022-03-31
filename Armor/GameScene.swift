@@ -76,7 +76,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(player)
     }
     
-    
     func addPlanet(){
         planet.fillColor = .init(red: 0.678, green: 1, blue: 0.184, alpha: 1)
         planet.strokeColor = .init(red: 0.796, green: 1, blue: 0.486, alpha: 1)
@@ -95,19 +94,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createBorder(){
-        let bordersx = SKShapeNode(rectOf: CGSize(width: 2, height: frame.size.height))
-        addChild(bordersx)
-        bordersx.position = CGPoint(x: frame.size.width, y: frame.size.height/2)
-        bordersx.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 2, height: frame.size.height))
-        bordersx.physicsBody?.affectedByGravity = false
-        bordersx.physicsBody?.isDynamic = false
-        bordersx.physicsBody?.restitution = 0
-        bordersx.alpha = 0.001
-        let borderdx = SKShapeNode(rectOf: CGSize(width: 2, height: frame.size.height * 2))
-        let speculare = CGFloat ( 1.0 * .pi)
-        borderdx.zRotation = speculare * CGFloat(1)
-        borderdx.alpha = 0.001
+        let borderdx = SKShapeNode(rectOf: CGSize(width: 2, height: frame.size.height))
         addChild(borderdx)
+        borderdx.position = CGPoint(x: frame.size.width, y: frame.size.height/2)
+        borderdx.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 2, height: frame.size.height))
+        borderdx.physicsBody?.affectedByGravity = false
+        borderdx.physicsBody?.isDynamic = false
+        borderdx.physicsBody?.restitution = 0
+        borderdx.alpha = 0.001
+        let bordersx = SKShapeNode(rectOf: CGSize(width: 2, height: frame.size.height * 2))
+        let speculare = CGFloat ( 1.0 * .pi)
+        bordersx.zRotation = speculare * CGFloat(1)
+        bordersx.alpha = 0.001
+        addChild(bordersx)
         let borderTop = SKShapeNode(rectOf: CGSize(width: frame.size.width, height: 2))
         borderTop.position = CGPoint(x: frame.size.width / 2, y: frame.size.height/1.1)
         borderTop.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frame.size.width, height: 2))
@@ -153,16 +152,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                  let path = UIBezierPath()
                  path.move(to: CGPoint(x: 0
 
-        , y: -115))
-                 path.addLine(to: CGPoint(x: 0, y: -112))
+        , y: -112))
+                 path.addLine(to: CGPoint(x: 0, y: -115))
                  path.addArc(withCenter: CGPoint.zero,
-                             radius: 112,
+                             radius: 115,
                              startAngle: CGFloat(3.0 * .pi/2),
                              endAngle: CGFloat(0),
                              clockwise: true)
-                 path.addLine(to: CGPoint(x: 115, y: 0))
+                 path.addLine(to: CGPoint(x: 112, y: 0))
                  path.addArc(withCenter: CGPoint.zero,
-                             radius: 115,
+                             radius: 112,
                              startAngle: CGFloat(0.0),
                              endAngle: CGFloat(3.0 * .pi/2),
                              clockwise: false)
@@ -175,16 +174,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //orbita esterna
             func circlePath3(){
                  let path = UIBezierPath()
-                 path.move(to: CGPoint(x: 0, y: -130))
-                 path.addLine(to: CGPoint(x: 0, y: -127))
+                 path.move(to: CGPoint(x: 0, y: -127))
+                 path.addLine(to: CGPoint(x: 0, y: -130))
                  path.addArc(withCenter: CGPoint.zero,
-                             radius: 127,
+                             radius: 130,
                              startAngle: CGFloat(3.0 * .pi/2),
                              endAngle: CGFloat(0),
                              clockwise: true)
-                 path.addLine(to: CGPoint(x: 130, y: 0))
+                 path.addLine(to: CGPoint(x: 127, y: 0))
                  path.addArc(withCenter: CGPoint.zero,
-                             radius: 130,
+                             radius: 127,
                              startAngle: CGFloat(0.0),
                              endAngle: CGFloat(3.0 * .pi/2),
                              clockwise: false)
@@ -197,16 +196,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         func circlePath4(){
              let path = UIBezierPath()
-             path.move(to: CGPoint(x: 0, y: -145))
-             path.addLine(to: CGPoint(x: 0, y: -142))
+             path.move(to: CGPoint(x: 0, y: -142))
+             path.addLine(to: CGPoint(x: 0, y: -145))
              path.addArc(withCenter: CGPoint.zero,
-                         radius: 142,
+                         radius: 145,
                          startAngle: CGFloat(3.0 * .pi/2),
                          endAngle: CGFloat(0),
                          clockwise: true)
-             path.addLine(to: CGPoint(x: 145, y: 0))
+             path.addLine(to: CGPoint(x: 142, y: 0))
              path.addArc(withCenter: CGPoint.zero,
-                         radius: 145,
+                         radius: 142,
                          startAngle: CGFloat(0.0),
                          endAngle: CGFloat(3.0 * .pi/2),
                          clockwise: false)
@@ -219,16 +218,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             func circlePath5(){
                  let path = UIBezierPath()
-                 path.move(to: CGPoint(x: 0, y: -158))
-                 path.addLine(to: CGPoint(x: 0, y: -155))
+                 path.move(to: CGPoint(x: 0, y: -155))
+                 path.addLine(to: CGPoint(x: 0, y: -158))
                  path.addArc(withCenter: CGPoint.zero,
-                             radius: 155,
+                             radius: 158,
                              startAngle: CGFloat(3.0 * .pi/2),
                              endAngle: CGFloat(0),
                              clockwise: true)
-                 path.addLine(to: CGPoint(x: 158, y: 0))
+                 path.addLine(to: CGPoint(x: 155, y: 0))
                  path.addArc(withCenter: CGPoint.zero,
-                             radius: 158,
+                             radius: 155,
                              startAngle: CGFloat(0.0),
                              endAngle: CGFloat(3.0 * .pi/2),
                              clockwise: false)
@@ -421,6 +420,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     print("hai vinto")
                     player.removeFromParent()
+                    let PlanetAnimationIn = SKAction.fadeOut(withDuration: 0.05)
+                    let PlanetAnimationOut = SKAction.fadeIn(withDuration: 0.05)
+                    let loop = SKAction.sequence([PlanetAnimationIn, PlanetAnimationOut])
+                    planet.run(loop)
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
                         self.removeAllChildren()
                         self.livello += 1
