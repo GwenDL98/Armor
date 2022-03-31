@@ -93,38 +93,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         planet.run(SKAction.repeatForever(planetAnimation))
     }
     
-    func createBorder(){
-        let borderdx = SKShapeNode(rectOf: CGSize(width: 2, height: frame.size.height))
-        addChild(borderdx)
-        borderdx.position = CGPoint(x: frame.size.width, y: frame.size.height/2)
-        borderdx.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 2, height: frame.size.height))
-        borderdx.physicsBody?.affectedByGravity = false
-        borderdx.physicsBody?.isDynamic = false
-        borderdx.physicsBody?.restitution = 0
-        borderdx.alpha = 0.001
-        let bordersx = SKShapeNode(rectOf: CGSize(width: 2, height: frame.size.height * 2))
-        let speculare = CGFloat ( 1.0 * .pi)
-        bordersx.zRotation = speculare * CGFloat(1)
-        bordersx.alpha = 0.001
-        addChild(bordersx)
-        let borderTop = SKShapeNode(rectOf: CGSize(width: frame.size.width, height: 2))
-        borderTop.position = CGPoint(x: frame.size.width / 2, y: frame.size.height/1.1)
-        borderTop.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frame.size.width, height: 2))
-        borderTop.physicsBody?.affectedByGravity = false
-        borderTop.physicsBody?.isDynamic = false
-        borderTop.physicsBody?.restitution = 0
-        borderTop.alpha = 0.001
-        addChild(borderTop)
-        let borderDown = SKShapeNode(rectOf: CGSize(width: frame.size.width, height: 2))
-        borderDown.position = CGPoint(x: frame.size.width / 2, y: frame.size.height/10)
-        borderDown.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frame.size.width, height: 2))
-        borderDown.physicsBody?.affectedByGravity = false
-        borderDown.physicsBody?.isDynamic = false
-        borderDown.physicsBody?.restitution = 0
-        borderDown.alpha = 0.001
-        addChild(borderDown)
-    }
-    
 //    orbuta più interna
     func circlePath1(){
          let path = UIBezierPath()
@@ -427,8 +395,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
                         self.removeAllChildren()
                         self.livello += 1
+                        print(self.livello)
                         self.costruttoreScena()
+                        if(self.livello == 6){
+                            self.removeAllChildren()
+                            
+                            let prossimoLivello = Livello2(size: self.size)
+                            let transition = SKTransition.fade(with: .black, duration: 2)
+                            self.view?.presentScene(prossimoLivello, transition: transition)
+                        }
                     })
+                    
+            
                 }
             }
         }
@@ -440,7 +418,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 circlePath1()
                 addPlanet()
                 addPlayer()
-                createBorder()
                 score.text = String(livello)
                 addChild(score)
 
@@ -449,7 +426,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 circlePath2()
                 addPlanet()
                 addPlayer()
-                createBorder()
                 score.text = String(livello)
                 addChild(score)
                 
@@ -459,7 +435,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 circlePath3()
                 addPlanet()
                 addPlayer()
-                createBorder()
                 score.text = String(livello)
                 addChild(score)
                 
@@ -469,7 +444,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 circlePath3()
                 addPlanet()
                 addPlayer()
-                createBorder()
                 circlePath4()
                 score.text = String(livello)
                 addChild(score)
@@ -480,7 +454,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 circlePath3()
                 addPlanet()
                 addPlayer()
-                createBorder()
                 circlePath4()
                 circlePath5()
                 score.text = String(livello)
