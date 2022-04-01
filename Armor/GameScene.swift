@@ -66,7 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.fillColor = .init(red: 0.678, green: 1, blue: 0.184, alpha: 1)
         player.strokeColor = .init(red: 0.796, green: 1, blue: 0.486, alpha: 1)
         player.glowWidth = 1
-        player.position = CGPoint(x: size.width / 2, y: size.width / 4)
+        player.position = CGPoint(x: size.width / 2, y: size.width / 3)
         player.name = "playerName"
         let playerMask = SKPhysicsBody(circleOfRadius: 10)
         playerMask.categoryBitMask = PhysicsCategory.playerName
