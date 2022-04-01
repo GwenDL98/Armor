@@ -23,25 +23,41 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     let planet = SKShapeNode(circleOfRadius: 40)
     let player2 = SKShapeNode( circleOfRadius: 10)
     let riferimento = SKShapeNode(circleOfRadius: 5)
-    
+    let score2: SKLabelNode
 
     
     var livello2 : Int = 6
+    
+    
+    
+    override init(size: CGSize){
+        score2 = SKLabelNode(text: String(livello2))
+        super.init(size: size)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMove(to view: SKView) {
         
       
     
         backgroundColor = SKColor.init(red: 0.078, green: 0, blue: 0.184, alpha: 1)
+        score2.fontName = "Menlo"
+        score2.fontSize = 30
+        score2.zPosition = 10
+        score2.fontColor = SKColor.init(red: 1, green: 0.078, blue: 0.765, alpha: 1)
+        score2.position = CGPoint(x: frame.size.width / 2 , y: frame.size.height / 1.43 )
+        
+        score2.text = String(livello2)
+        addChild(score2)
+        
+        
         createBorder()
 
         createCircle6()
         addPlanet()
         addPlayer()
-//        createBorderMoving()
-//        circlePlayer()
-//        createCircle7()
-//        createCircle8()
         originalPlayerPosition = player2.position
         riferimento.position = CGPoint(x: originalPlayerPosition.x, y: originalPlayerPosition.y)
                 addChild(riferimento)
@@ -427,6 +443,8 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createCircle6()
             addPlanet()
             addPlayer()
+            score2.text = String(livello2)
+            addChild(score2)
             
         case 7:
             createCircle7()
@@ -434,6 +452,8 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createCircle6()
             addPlanet()
             addPlayer()
+            score2.text = String(livello2)
+            addChild(score2)
             
         case 8:
             createCircle7_1()
@@ -442,6 +462,8 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createCircle8()
             addPlanet()
             addPlayer()
+            score2.text = String(livello2)
+            addChild(score2)
         
         case 9:
             createCircle7_1()
@@ -449,6 +471,8 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createBorderMoving()
             addPlanet()
             addPlayer()
+            score2.text = String(livello2)
+            addChild(score2)
             
         case 10:
             createCircle7_1()
@@ -457,6 +481,8 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createBorderMoving()
             addPlanet()
             addPlayer()
+            score2.text = String(livello2)
+            addChild(score2)
             
         default: return
             
@@ -506,6 +532,14 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
                     self.livello2 += 1
                     print(self.livello2)
                     self.costruttore2()
+                    
+                    if(self.livello2 == 11){
+                        self.removeAllChildren()
+                        
+                        let prossimoLivello = Level3(size: self.size)
+                        let transition = SKTransition.fade(with: .black, duration: 2)
+                        self.view?.presentScene(prossimoLivello, transition: transition)
+                    }
                     
                 })
                 
