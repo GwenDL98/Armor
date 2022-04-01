@@ -1,10 +1,3 @@
-//
-//  GameScene.swift
-//  Armor
-//
-//  Created by Guendalina De Laurentis on 29/03/22.
-//
-
 import SpriteKit
 
 struct PhysicsCategory {
@@ -118,9 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    orbita centrale
             func circlePath2(){
                  let path = UIBezierPath()
-                 path.move(to: CGPoint(x: 0
-
-        , y: -112))
+                 path.move(to: CGPoint(x: 0, y: -112))
                  path.addLine(to: CGPoint(x: 0, y: -115))
                  path.addArc(withCenter: CGPoint.zero,
                              radius: 115,
@@ -205,6 +196,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let rotate = SKAction.rotate(byAngle: 2.0 * CGFloat(1.0 * .pi), duration: 7.0)
                 circle.run(SKAction.repeatForever(rotate))
             }
+    
     
         
             func duplicateCircles1(_ path: UIBezierPath, clockwise: Bool) -> SKNode{
@@ -345,13 +337,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 return
             }
             
-            let touchLocation = touch.location(in: self)
-            let touchedNode = atPoint(touchLocation)
-
-            if(touchedNode.name == "playerName"){
-                player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
+                player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 60))
                 player.physicsBody?.linearDamping = 5
-            }
+            
             
             }
             
@@ -410,64 +398,64 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-        
-        
-        func costruttoreScena(){
-            switch livello {
-            case 1:
-                circlePath1()
-                addPlanet()
-                addPlayer()
-                score.text = String(livello)
-                addChild(score)
+    
+    func costruttoreScena(){
+        switch livello {
+        case 1:
+            circlePath1()
+            addPlanet()
+            addPlayer()
+            score.text = String(livello)
+            addChild(score)
 
-            case 2:
-                circlePath1()
-                circlePath2()
-                addPlanet()
-                addPlayer()
-                score.text = String(livello)
-                addChild(score)
-                
-            case 3:
-                circlePath1()
-                circlePath2()
-                circlePath3()
-                addPlanet()
-                addPlayer()
-                score.text = String(livello)
-                addChild(score)
-                
-            case 4:
-                circlePath1()
-                circlePath2()
-                circlePath3()
-                addPlanet()
-                addPlayer()
-                circlePath4()
-                score.text = String(livello)
-                addChild(score)
-                
-            case 5:
-                circlePath1()
-                circlePath2()
-                circlePath3()
-                addPlanet()
-                addPlayer()
-                circlePath4()
-                circlePath5()
-                score.text = String(livello)
-                addChild(score)
+        case 2:
+            circlePath1()
+            circlePath2()
+            addPlanet()
+            addPlayer()
+            score.text = String(livello)
+            addChild(score)
+            
+        case 3:
+            circlePath1()
+            circlePath2()
+            circlePath3()
+            addPlanet()
+            addPlayer()
+            score.text = String(livello)
+            addChild(score)
+            
+        case 4:
+            circlePath1()
+            circlePath2()
+            circlePath3()
+            addPlanet()
+            addPlayer()
+            circlePath4()
+            score.text = String(livello)
+            addChild(score)
+            
+        case 5:
+            circlePath1()
+            circlePath2()
+            circlePath3()
+            addPlanet()
+            addPlayer()
+            circlePath4()
+            circlePath5()
+            score.text = String(livello)
+            addChild(score)
 
-            default : return
-                
-                }
-        }
-        
-        
-        
-        
-        override func update(_ currentTime: TimeInterval) {
-            // Called before each frame is rendered
-        }
+        default : return
+            
+            }
     }
+    
+    
+    
+    
+    override func update(_ currentTime: TimeInterval) {
+        // Called before each frame is rendered
+    }
+}
+
