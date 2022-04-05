@@ -424,20 +424,38 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
                 if(tiro){
                     let location = touch.location(in: self)
                     
-            
+                    var teta: Double = 0
+                                                    
+                                    var x = originalPlayerPosition.x - location.x
+                                    var y = originalPlayerPosition.y - location.y
+                    //
+                                    var ro = sqrt((x*x)+(y*y))
+                                    
+                    //                teta = acos(ro/x)
+                    //                teta = asin(ro/y)
 
-                    if(location.y > 60 && location.y < 150 ){
-                        if(location.x > 100 && location.x < 330){
-                        
-                    player2.position.x = location.x
-                    player2.position.y = location.y
-                            circlePlayer()
-                        }
-                    }
+                                    if(ro>=0 && ro<90){
+                                        
+                                        
+                                    player2.position.x = location.x
+                                    player2.position.y = location.y
+                                            circlePlayer()
+                                            print("x:\(x)")
+                                            print("y:\(y)")
+                                            
+                                        
+                                    }
+
+//                    if(location.y > 60 && location.y < 150 ){
+//                        if(location.x > 100 && location.x < 330){
+//
+//                    player2.position.x = location.x
+//                    player2.position.y = location.y
+//                            circlePlayer()
+//                        }
+//                    }
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now()+5, execute: {
-                        self.win2 = false
-                    })
+                    
            
                     
                     let traiettoria = SKShapeNode(rectOf: CGSize(width: 2.5, height: 2.5))
