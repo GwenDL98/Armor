@@ -25,8 +25,16 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     let riferimento = SKShapeNode(circleOfRadius: 5)
     let score2: SKLabelNode
 
+    var win : Bool = false
+    var lose : Bool = false
+    var tiro : Bool = true
+    var lose2: Bool = false
+    var win2: Bool = false
     
     var livello2 : Int = 6
+    
+    var timerCounter = 0
+    var lastTimerCounter = 0
     
     
     
@@ -39,13 +47,14 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     }
     
     override func didMove(to view: SKView) {
-        
+      print("Mammt")
+        myTimer()
       
     
         backgroundColor = SKColor.init(red: 0.078, green: 0, blue: 0.184, alpha: 1)
         score2.fontName = "Menlo"
-        score2.fontSize = 30
-        score2.zPosition = 10
+        score2.fontSize = frame.size.height * 0.04
+        score2.zPosition = 2
         score2.fontColor = SKColor.init(red: 1, green: 0.078, blue: 0.765, alpha: 1)
         score2.position = CGPoint(x: frame.size.width / 2 , y: frame.size.height / 1.43 )
         
@@ -65,6 +74,14 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
         self.scene?.physicsWorld.contactDelegate = self
 
 
+        
+    }
+    
+    func myTimer(){
+        run(.wait(forDuration: 1), completion: {
+            self.timerCounter += 1
+            self.myTimer()
+        })
     }
     
     func addPlayer(){
@@ -134,16 +151,16 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     
     func createCircle6(){
             let path1 = UIBezierPath()
-            path1.move(to: CGPoint(x: 0, y: -98))
-            path1.addLine(to: CGPoint(x: 0, y: -95))
+            path1.move(to: CGPoint(x: 0, y:-frame.size.height/9))
+            path1.addLine(to: CGPoint(x: 0, y: -frame.size.height/9.3))
             path1.addArc(withCenter: CGPoint.zero,
-                        radius: 95,
+                        radius: frame.size.height/9.3,
                         startAngle: CGFloat(3.0 * .pi/2),
                         endAngle: CGFloat(0),
                         clockwise: true)
-            path1.addLine(to: CGPoint(x: 98, y: 0))
+            path1.addLine(to: CGPoint(x: frame.size.height/9, y: 0))
             path1.addArc(withCenter: CGPoint.zero,
-                        radius: 98,
+                        radius: frame.size.height/9,
                         startAngle: CGFloat(0.0),
                         endAngle: CGFloat(3.0 * .pi/2),
                         clockwise: false)
@@ -175,16 +192,16 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
    
     func createCircle7(){
             let path2 = UIBezierPath()
-            path2.move(to: CGPoint(x: 0, y: -112))
-            path2.addLine(to: CGPoint(x: 0, y: -115))
+            path2.move(to: CGPoint(x: 0, y: -frame.size.height/7.8))
+            path2.addLine(to: CGPoint(x: 0, y: -frame.size.height/8.05))
             path2.addArc(withCenter: CGPoint.zero,
-                        radius: 115,
+                        radius: frame.size.height/8.05,
                         startAngle: CGFloat(3.0 * .pi/2),
                         endAngle: CGFloat(0.0),
                         clockwise: true)
-            path2.addLine(to: CGPoint(x: 112, y: 0))
+            path2.addLine(to: CGPoint(x: frame.size.height/7.8, y: 0))
             path2.addArc(withCenter: CGPoint.zero,
-                        radius: 112,
+                        radius: frame.size.height/7.8,
                         startAngle: CGFloat(0.0),
                         endAngle: CGFloat(3.0 * .pi/2),
                         clockwise: false)
@@ -215,16 +232,16 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     
     func createCircle7_1(){
             let path2 = UIBezierPath()
-            path2.move(to: CGPoint(x: 0, y: -112))
-            path2.addLine(to: CGPoint(x: 0, y: -115))
+            path2.move(to: CGPoint(x: 0, y:  -frame.size.height/7.8))
+            path2.addLine(to: CGPoint(x: 0, y: -frame.size.height/8.05))
             path2.addArc(withCenter: CGPoint.zero,
-                        radius: 115,
+                        radius: frame.size.height/8.05,
                         startAngle: CGFloat(3.0 * .pi/2),
                         endAngle: CGFloat(0.0),
                         clockwise: true)
-            path2.addLine(to: CGPoint(x: 112, y: 0))
+            path2.addLine(to: CGPoint(x:  frame.size.height/7.8, y: 0))
             path2.addArc(withCenter: CGPoint.zero,
-                        radius: 112,
+                        radius: frame.size.height/7.8,
                         startAngle: CGFloat(0.0),
                         endAngle: CGFloat(3.0 * .pi/2),
                         clockwise: false)
@@ -256,16 +273,16 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
  
     func createCircle8(){
              let path3 = UIBezierPath()
-             path3.move(to: CGPoint(x: 0, y: -127))
-             path3.addLine(to: CGPoint(x: 0, y: -130))
+             path3.move(to: CGPoint(x: 0, y: -frame.size.height/7.1))
+             path3.addLine(to: CGPoint(x: 0, y: -frame.size.height/6.9))
              path3.addArc(withCenter: CGPoint.zero,
-                         radius: 130,
+                         radius: frame.size.height/6.9,
                          startAngle: CGFloat(3.0 * .pi/2),
                          endAngle: CGFloat(0),
                          clockwise: true)
-             path3.addLine(to: CGPoint(x: 127, y: 0))
+             path3.addLine(to: CGPoint(x: frame.size.height/7.1, y: 0))
              path3.addArc(withCenter: CGPoint.zero,
-                         radius: 127,
+                         radius: frame.size.height/7.1,
                          startAngle: CGFloat(0.0),
                          endAngle: CGFloat(3.0 * .pi/2),
                          clockwise: false)
@@ -400,40 +417,58 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
             
+        
             for touch in touches {
                
               
-                let location = touch.location(in: self)
-                
-        
-
-                if(location.y > 60 && location.y < 150 ){
-                    if(location.x > 100 && location.x < 330){
+                if(tiro){
+                    let location = touch.location(in: self)
                     
-                player2.position.x = location.x
-                player2.position.y = location.y
-                        circlePlayer()
+            
+
+                    if(location.y > 60 && location.y < 150 ){
+                        if(location.x > 100 && location.x < 330){
+                        
+                    player2.position.x = location.x
+                    player2.position.y = location.y
+                            circlePlayer()
+                        }
                     }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now()+5, execute: {
+                        self.win2 = false
+                    })
+           
+                    
+                    let traiettoria = SKShapeNode(rectOf: CGSize(width: 2.5, height: 2.5))
+                    traiettoria.position = CGPoint(x: player2.position.x, y: player2.position.y)
+                    traiettoria.zPosition = 10
+                    addChild(traiettoria)
+                    traiettoria.run(SKAction.moveBy(x: originalPlayerPosition.x - player2.position.x, y: originalPlayerPosition.y - player2.position.y, duration: 0.1),  completion: {
+                        traiettoria.removeFromParent()
+            
+            })
                 }
-                
-                let traiettoria = SKShapeNode(rectOf: CGSize(width: 2.5, height: 2.5))
-                traiettoria.position = CGPoint(x: player2.position.x, y: player2.position.y)
-                traiettoria.zPosition = 10
-                addChild(traiettoria)
-                traiettoria.run(SKAction.moveBy(x: originalPlayerPosition.x - player2.position.x, y: originalPlayerPosition.y - player2.position.y, duration: 0.1),  completion: {
-                    traiettoria.removeFromParent()
-        
-        })
                 
             }
         }
         
         override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
             
-            var deltaX = originalPlayerPosition.x - player2.position.x
-            var deltaY = originalPlayerPosition.y - player2.position.y
+            if(tiro){
+                var deltaX = originalPlayerPosition.x - player2.position.x
+                var deltaY = originalPlayerPosition.y - player2.position.y
+                
+                player2.physicsBody?.applyImpulse(CGVector(dx: deltaX, dy: deltaY))
+                
+                tiro = false
+                lastTimerCounter = timerCounter
+            }
             
-            player2.physicsBody?.applyImpulse(CGVector(dx: deltaX, dy: deltaY))
+            
+            
+            
+      
         }
     
     func costruttore2(){
@@ -443,6 +478,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createCircle6()
             addPlanet()
             addPlayer()
+            tiro = true
             score2.text = String(livello2)
             addChild(score2)
             
@@ -452,6 +488,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createCircle6()
             addPlanet()
             addPlayer()
+            tiro = true
             score2.text = String(livello2)
             addChild(score2)
             
@@ -462,6 +499,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createCircle8()
             addPlanet()
             addPlayer()
+            tiro = true
             score2.text = String(livello2)
             addChild(score2)
         
@@ -471,6 +509,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createBorderMoving()
             addPlanet()
             addPlayer()
+            tiro = true
             score2.text = String(livello2)
             addChild(score2)
             
@@ -479,6 +518,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             createCircle6()
             createCircle8()
             createBorderMoving()
+            tiro = true
             addPlanet()
             addPlayer()
             score2.text = String(livello2)
@@ -495,7 +535,6 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
         let contactA = contact.bodyA.node?.name
         let contactB = contact.bodyB.node?.name
         
-        print("DidBegin")
         
         
         guard contactA != nil else {
@@ -508,8 +547,8 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
         
         if (contactA == "playerName" || contactB == "playerName"){
             if(contactA!.contains("orbit") || contactB!.contains("orbit") ){
-
                 print("hai perso")
+                lose = true
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
                     self.removeAllChildren()
                     self.livello2 = 6
@@ -521,7 +560,9 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
         if (contactA == "playerName" || contactB == "playerName"){
             if(contactA == "pianeta" || contactB == "pianeta"){
                 
+                
                 print("hai vinto")
+                win = true
                 player2.removeFromParent()
                 let PlanetAnimationIn = SKAction.fadeOut(withDuration: 0.05)
                 let PlanetAnimationOut = SKAction.fadeIn(withDuration: 0.05)
@@ -547,4 +588,22 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             }
         }
     }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if(!tiro){
+            print("MAMMT GRANDE")
+            
+            if( (timerCounter - lastTimerCounter) >= 2 ){
+                print("hai perso, sei scarso in culo")
+                lose = true
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                    self.removeAllChildren()
+                    self.livello2 = 6
+                    self.costruttore2()
+                })
+            }
+        }
     }
+    
+    
+}

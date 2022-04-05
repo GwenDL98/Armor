@@ -19,6 +19,12 @@ class Level3: SKScene {
         winLabel.fontColor = SKColor.init(red: 1, green: 0.078, blue: 0.765, alpha: 1)
         winLabel.position = CGPoint(x: frame.size.width / 2 , y: frame.size.height / 1.43 )
         addChild(winLabel)
+        
+        
+        func addCurve(){
+          
+        }
+        
     }
 
 }

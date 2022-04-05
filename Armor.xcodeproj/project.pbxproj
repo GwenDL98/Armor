@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		521A064C27F5DC540007051E /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A064B27F5DC540007051E /* Level2.swift */; };
 		521A064E27F7451C0007051E /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A064D27F7451C0007051E /* Level3.swift */; };
+		52A3F6F827F8A8450066D86B /* Level4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3F6F727F8A8450066D86B /* Level4.swift */; };
 		52E54CCF27F3517A000431EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54CCE27F3517A000431EB /* AppDelegate.swift */; };
 		52E54CD127F3517A000431EB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52E54CD027F3517A000431EB /* GameScene.sks */; };
 		52E54CD327F3517A000431EB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52E54CD227F3517A000431EB /* Actions.sks */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		521A064B27F5DC540007051E /* Level2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
 		521A064D27F7451C0007051E /* Level3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
+		52A3F6F727F8A8450066D86B /* Level4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level4.swift; sourceTree = "<group>"; };
 		52E54CCB27F3517A000431EB /* Armor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Armor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E54CCE27F3517A000431EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E54CD027F3517A000431EB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				52E54CD427F3517A000431EB /* GameScene.swift */,
 				521A064B27F5DC540007051E /* Level2.swift */,
 				521A064D27F7451C0007051E /* Level3.swift */,
+				52A3F6F727F8A8450066D86B /* Level4.swift */,
 				52E54CD627F3517A000431EB /* GameViewController.swift */,
 				52E54CD827F3517A000431EB /* Main.storyboard */,
 				52E54CDB27F3517D000431EB /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 				521A064E27F7451C0007051E /* Level3.swift in Sources */,
 				52E54CD527F3517A000431EB /* GameScene.swift in Sources */,
 				521A064C27F5DC540007051E /* Level2.swift in Sources */,
+				52A3F6F827F8A8450066D86B /* Level4.swift in Sources */,
 				52E54CD727F3517A000431EB /* GameViewController.swift in Sources */,
 				52E54CCF27F3517A000431EB /* AppDelegate.swift in Sources */,
 			);
