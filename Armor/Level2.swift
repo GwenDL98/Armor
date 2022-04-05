@@ -101,16 +101,16 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     func circlePlayer(){
  
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: -95))
-        path.addLine(to: CGPoint(x: 0, y: -95))
+        path.move(to: CGPoint(x: 0, y: -frame.size.height/9))
+        path.addLine(to: CGPoint(x: 0, y: -frame.size.height/9.05))
         path.addArc(withCenter: CGPoint.zero,
-                    radius: 95,
+                    radius: frame.size.height/9.05,
                     startAngle: CGFloat(3.0 * .pi/2),
                     endAngle: CGFloat(0),
                     clockwise: true)
-        path.addLine(to: CGPoint(x: 95, y: 0))
+        path.addLine(to: CGPoint(x: frame.size.height/9, y: 0))
         path.addArc(withCenter: CGPoint.zero,
-                    radius: 95,
+                    radius: frame.size.height/9,
                     startAngle: CGFloat(0.0),
                     endAngle: CGFloat(3.0 * .pi/2),
                     clockwise: false)
