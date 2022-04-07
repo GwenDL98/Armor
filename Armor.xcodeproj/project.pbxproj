@@ -10,6 +10,8 @@
 		521A064C27F5DC540007051E /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A064B27F5DC540007051E /* Level2.swift */; };
 		521A064E27F7451C0007051E /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A064D27F7451C0007051E /* Level3.swift */; };
 		522D387227FF3A7800D11B95 /* play.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D387127FF3A7800D11B95 /* play.swift */; };
+		522D387427FF42C000D11B95 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D387327FF42C000D11B95 /* SplashScreen.swift */; };
+		522D387627FF42D500D11B95 /* Minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 522D387527FF42D500D11B95 /* Minecraft.ttf */; };
 		52A3F6F827F8A8450066D86B /* Level4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3F6F727F8A8450066D86B /* Level4.swift */; };
 		52E54CCF27F3517A000431EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54CCE27F3517A000431EB /* AppDelegate.swift */; };
 		52E54CD127F3517A000431EB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52E54CD027F3517A000431EB /* GameScene.sks */; };
@@ -25,6 +27,9 @@
 		521A064B27F5DC540007051E /* Level2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
 		521A064D27F7451C0007051E /* Level3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
 		522D387127FF3A7800D11B95 /* play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = play.swift; sourceTree = "<group>"; };
+		522D387327FF42C000D11B95 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		522D387527FF42D500D11B95 /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Minecraft.ttf; sourceTree = "<group>"; };
+		522D387727FF42E900D11B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52A3F6F727F8A8450066D86B /* Level4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level4.swift; sourceTree = "<group>"; };
 		52E54CCB27F3517A000431EB /* Armor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Armor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E54CCE27F3517A000431EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 		52E54CCD27F3517A000431EB /* Armor */ = {
 			isa = PBXGroup;
 			children = (
+				522D387727FF42E900D11B95 /* Info.plist */,
 				52E54CCE27F3517A000431EB /* AppDelegate.swift */,
 				52E54CD027F3517A000431EB /* GameScene.sks */,
 				52E54CD227F3517A000431EB /* Actions.sks */,
@@ -76,9 +82,11 @@
 				521A064D27F7451C0007051E /* Level3.swift */,
 				52A3F6F727F8A8450066D86B /* Level4.swift */,
 				52E54CD627F3517A000431EB /* GameViewController.swift */,
+				522D387327FF42C000D11B95 /* SplashScreen.swift */,
 				52E54CD827F3517A000431EB /* Main.storyboard */,
 				52E54CDB27F3517D000431EB /* Assets.xcassets */,
 				52E54CDD27F3517D000431EB /* LaunchScreen.storyboard */,
+				522D387527FF42D500D11B95 /* Minecraft.ttf */,
 			);
 			path = Armor;
 			sourceTree = "<group>";
@@ -141,6 +149,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522D387627FF42D500D11B95 /* Minecraft.ttf in Resources */,
 				52E54CDA27F3517A000431EB /* Main.storyboard in Resources */,
 				52E54CD127F3517A000431EB /* GameScene.sks in Resources */,
 				52E54CDC27F3517D000431EB /* Assets.xcassets in Resources */,
@@ -156,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522D387427FF42C000D11B95 /* SplashScreen.swift in Sources */,
 				521A064E27F7451C0007051E /* Level3.swift in Sources */,
 				52E54CD527F3517A000431EB /* GameScene.swift in Sources */,
 				522D387227FF3A7800D11B95 /* play.swift in Sources */,
@@ -311,6 +321,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8N8UMHC9XJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Armor/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -322,7 +333,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gen.Armor;
+				PRODUCT_BUNDLE_IDENTIFIER = gwen.Armor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -339,6 +350,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 8N8UMHC9XJ;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Armor/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -350,7 +362,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gen.Armor;
+				PRODUCT_BUNDLE_IDENTIFIER = gwen.Armor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
