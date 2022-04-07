@@ -21,10 +21,10 @@ class SplashScreen: SKScene {
         addChild(teamLogo)
         
         teamName.fontName = "Menlo"
-        teamName.fontSize = frame.size.height * 0.025
+        teamName.fontSize = frame.size.height * 0.023
         teamName.zPosition = 10
         teamName.fontColor = .init(red: 0.796, green: 0.624, blue: 0.804, alpha: 1)
-        teamName.position = CGPoint(x: frame.size.width / 2 , y: frame.size.height / 3.5 )
+        teamName.position = CGPoint(x: frame.size.width / 2 , y: frame.size.height / 3.0 )
         addChild(teamName)
         
         teamLogo.run(SKAction.repeatForever(SKAction.animate(with: [SKTexture(imageNamed: "1.1") , SKTexture(imageNamed:"2.1")], timePerFrame: 0.35)))
