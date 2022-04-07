@@ -16,6 +16,34 @@ struct PhysicsCategory2 {
     static let pianeta: UInt32 = 0x1 << 5
 }
 
+extension CGVector {
+      /// Creates a vector using an angle and length
+      /// - parameter angleRadians: An angle in radians
+      /// - parameter length: A vector length
+      init(angleRadians: CGFloat, length: CGFloat) {
+        let dx = cos(angleRadians) * length
+        let dy = sin(angleRadians) * length
+        self.init(dx: dx, dy: dy)
+      }
+    
+    init(angleDegrees: CGFloat, length: CGFloat) {
+      self.init(angleRadians: angleDegrees / 180.0 * .pi, length: length)
+    }
+    func angleRadians() -> CGFloat {
+      return atan2(dy, dx)
+    }
+    
+    func angleDegrees() -> CGFloat {
+      return angleRadians() * 180.0 / .pi
+    }
+    
+    func length() -> CGFloat {
+      return sqrt(pow(dx, 2) + pow(dy, 2))
+    }
+    
+    
+}
+
 
 class Livello2 : SKScene, SKPhysicsContactDelegate{
 
@@ -424,27 +452,43 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
                 if(tiro){
                     let location = touch.location(in: self)
                     
-                    var teta: Double = 0
-                                                    
-                                    var x = originalPlayerPosition.x - location.x
-                                    var y = originalPlayerPosition.y - location.y
-                    //
-                                    var ro = sqrt((x*x)+(y*y))
+                    var x = originalPlayerPosition.x - player2.position.x
+                    var y = originalPlayerPosition.y - player2.position.y
+                    var ro = sqrt((x*x)+(y*y))
+                    var x_location = originalPlayerPosition.x - location.x
+                    var y_location = originalPlayerPosition.y - location.y
+                    var ro_location = sqrt((x_location*x_location)+(y_location*y_location))
                                     
                     //                teta = acos(ro/x)
                     //                teta = asin(ro/y)
+                    
+                    var tetaLocation = asin(-y_location/ro_location)
+                    var tetaPlayer = asin(player2.position.y/ro)
+                    
+                    
 
-                                    if(ro>=0 && ro<90){
-                                        
-                                        
-                                    player2.position.x = location.x
-                                    player2.position.y = location.y
-                                            circlePlayer()
-                                            print("x:\(x)")
-                                            print("y:\(y)")
-                                            
-                                        
-                                    }
+                    
+                    if(ro_location>=0 && ro_location<90){
+                        print("Dentro")
+                        print("Y: \( -y )")
+                        print("TetaLocation: \( (tetaLocation*180)/3.14 )")
+                        player2.position.x = location.x
+                        player2.position.y = location.y
+                            circlePlayer()
+//                            print("x:\(x)")
+                        
+//                            print("y:\(y)")
+                    } else {
+                        let myNewX = (90*cos(-tetaLocation))
+                                                let myNewY = (90*sin(-tetaLocation))
+                                                if(location.x < size.width*0.5){
+                                                    player2.position.x = (originalPlayerPosition.x - myNewX)
+                                                    player2.position.y = (originalPlayerPosition.y - myNewY)
+                                                } else {
+                                                    player2.position.x = (originalPlayerPosition.x + myNewX)
+                                                    player2.position.y = (originalPlayerPosition.y - myNewY)
+                                                }
+                    }
 
 //                    if(location.y > 60 && location.y < 150 ){
 //                        if(location.x > 100 && location.x < 330){
@@ -482,8 +526,6 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
                 tiro = false
                 lastTimerCounter = timerCounter
             }
-            
-            
             
             
       
@@ -586,6 +628,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
                 let PlanetAnimationOut = SKAction.fadeIn(withDuration: 0.05)
                 let loop = SKAction.sequence([PlanetAnimationIn, PlanetAnimationOut])
                 planet.run(loop)
+
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
                     self.removeAllChildren()
                     self.livello2 += 1
@@ -609,10 +652,10 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     
     override func update(_ currentTime: TimeInterval) {
         if(!tiro){
-            print("MAMMT GRANDE")
+//            print("MAMMT GRANDE"  )
             
-            if( (timerCounter - lastTimerCounter) >= 2 ){
-                print("hai perso, sei scarso in culo")
+            if( (timerCounter - lastTimerCounter) >= 3 ){
+//                print("hai perso, sei scarso in culo")
                 lose = true
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
                     self.removeAllChildren()
