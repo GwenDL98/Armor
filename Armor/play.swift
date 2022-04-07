@@ -101,7 +101,7 @@ class play: SKScene {
         if(touchedNode.name == "tap"){
             
             let startGameScene = GameScene(size: self.size)
-            let transition = SKTransition.fade(withDuration: 2)
+            let transition = SKTransition.fade(withDuration: 1)
             self.view?.presentScene(startGameScene, transition: transition)
         }
 }

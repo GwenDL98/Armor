@@ -10,43 +10,34 @@ import SwiftUI
 
 class SplashScreen: SKScene {
     
-    let teamLogo: SKSpriteNode = SKSpriteNode(imageNamed: "TeamLogo")
-    let blackBackground: SKShapeNode
-    
-    override init(size: CGSize) {
-        blackBackground = SKShapeNode(rectOf: CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
+    let teamLogo: SKSpriteNode = SKSpriteNode(imageNamed: "1.1")
+    let teamName  = SKLabelNode(text: "The Axolotl Team")
 
-        super.init(size: size)
-    }
-        required init(coder aDecoder: NSCoder) {
-          fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
-    
     override func didMove(to view: SKView) {
-        blackBackground.strokeColor = .black
-        blackBackground.fillColor = .black
-        blackBackground.zPosition = 1
-        blackBackground.position = CGPoint(x: size.width*0.5, y: size.height*0.5)
-        
+        backgroundColor = SKColor.init(red: 0.078, green: 0, blue: 0.184, alpha: 1)
         teamLogo.position = CGPoint(x: size.width*0.5, y: size.height*0.5)
         teamLogo.zPosition = 2
         teamLogo.alpha = 0
-        
-        addChild(blackBackground)
         addChild(teamLogo)
         
-//        teamLogo.run(SKAction.fadeIn(withDuration: 0.7))
+        teamName.fontName = "Menlo"
+        teamName.fontSize = frame.size.height * 0.025
+        teamName.zPosition = 10
+        teamName.fontColor = .init(red: 0.796, green: 0.624, blue: 0.804, alpha: 1)
+        teamName.position = CGPoint(x: frame.size.width / 2 , y: frame.size.height / 3.5 )
+        addChild(teamName)
         
-        teamLogo.run(SKAction.fadeIn(withDuration: 0.7), completion: {
-            DispatchQueue.main.asyncAfter(deadline: .now()+1.5, execute: {
-                self.teamLogo.run(SKAction.fadeOut(withDuration: 0.5), completion: {
-                    self.teamLogo.removeFromParent()
-    //                let menuScene = GameScene(size: self.size)
-    //                self.view?.presentScene(menuScene)
-                    self.view?.presentScene(GameScene(size: self.size))
+        teamLogo.run(SKAction.repeatForever(SKAction.animate(with: [SKTexture(imageNamed: "1.1") , SKTexture(imageNamed:"2.1")], timePerFrame: 0.35)))
+        
+        teamLogo.run(SKAction.fadeIn(withDuration: 0.05), completion: {
+            DispatchQueue.main.asyncAfter(deadline: .now()+2.5, execute: {
+                self.teamLogo.run(SKAction.fadeOut(withDuration: 0.5))
+                self.teamName.run(SKAction.fadeOut(withDuration: 0.5), completion: {
+                    self.teamName.removeFromParent()
+                    let startGameScene = play(size: self.size)
+                    let transition = SKTransition.fade(withDuration: 1)
+                    self.view?.presentScene(startGameScene, transition: transition)
+//                    self.view?.presentScene(GameScene(size: self.size))
                 })
             })
         })
