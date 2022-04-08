@@ -81,12 +81,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     }
     
     override func didMove(to view: SKView) {
-      print("Mammt")
         myTimer()
-      
-        
-        
-                
                 trajectory1.zPosition = 2
                 trajectory2.zPosition = 2
                 trajectory3.zPosition = 2
