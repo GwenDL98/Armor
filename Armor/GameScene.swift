@@ -42,16 +42,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        
         backgroundColor = SKColor.init(red: 0.078, green: 0, blue: 0.184, alpha: 1)
-        
+
         costruttoreScena()
-        
+
         score.fontName = "Menlo"
         score.fontSize = frame.size.height * 0.04
         score.zPosition = 2
         score.fontColor = SKColor.init(red: 1, green: 0.078, blue: 0.765, alpha: 1)
         score.position = CGPoint(x: frame.size.width / 2 , y: frame.size.height / 1.43 )
-        
+
         self.scene?.physicsWorld.contactDelegate = self
     }
     
@@ -390,9 +391,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         self.costruttoreScena()
                         if(self.livello == 6){
                             self.removeAllChildren()
+                            let newInfo = SKLabelNode(text: "New Player mechanics:")
+                            let sling = SKLabelNode(text: "SlingShot" )
+                            sling.fontName = "Menlo"
+                            sling.fontSize = self.frame.size.height * 0.03
+                            sling.zPosition = 10
+                            sling.fontColor = SKColor.init(red: 0.678, green: 1, blue: 0.184, alpha: 1)
+                            sling.position = CGPoint(x: self.frame.size.width / 2 , y: self.frame.size.height / 2.5 )
+                            newInfo.fontName = "Menlo"
+                            newInfo.fontSize = self.frame.size.height * 0.02
+                            newInfo.zPosition = 10
+                            newInfo.fontColor = SKColor.init(red: 1, green: 0.078, blue: 0.765, alpha: 1)
+                            newInfo.position = CGPoint(x: self.frame.size.width / 2 , y: self.frame.size.height / 2 )
+                            let fadeIn = SKAction.fadeIn(withDuration: 2)
+                            let fade = SKAction.fadeOut(withDuration: 5)
+                            let seq = SKAction.sequence([fadeIn, fade])
+                            sling.run(seq)
+                            newInfo.run(seq)
+                            self.addChild(newInfo)
+                            self.addChild(sling)
                             
                             let prossimoLivello = Livello2(size: self.size)
-                            let transition = SKTransition.fade(with: .black, duration: 2)
+                            let transition = SKTransition.fade(with: .black, duration: 8)
                             self.view?.presentScene(prossimoLivello, transition: transition)
                         }
                     })
