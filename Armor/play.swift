@@ -19,7 +19,7 @@ class play: SKScene {
         tapToContinue.fillColor = .white
         tapToContinue.alpha = 0.001
         tapToContinue.name = "tap"
-        tapToContinue.zPosition = 10
+        tapToContinue.zPosition = 12
         addChild(tapToContinue)
         
         Tapplay()

@@ -89,7 +89,6 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
         score2.text = String(livello2)
         addChild(score2)
         
-        
         createBorder()
 
         createCircle6()
