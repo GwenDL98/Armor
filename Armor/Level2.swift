@@ -52,6 +52,12 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
     let player2 = SKShapeNode( circleOfRadius: 10)
     let riferimento = SKShapeNode(circleOfRadius: 5)
     let score2: SKLabelNode
+    
+    let trajectory1  = SKShapeNode(circleOfRadius: 2.5)
+        let trajectory2  = SKShapeNode(circleOfRadius: 3)
+        let trajectory3  = SKShapeNode(circleOfRadius: 3.5)
+        let trajectory4  = SKShapeNode(circleOfRadius: 4)
+        let trajectory5  = SKShapeNode(circleOfRadius: 4.5)
 
     var win : Bool = false
     var lose : Bool = false
@@ -78,7 +84,32 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
       print("Mammt")
         myTimer()
       
-    
+        
+        
+                
+                trajectory1.zPosition = 2
+                trajectory2.zPosition = 2
+                trajectory3.zPosition = 2
+                trajectory4.zPosition = 2
+                trajectory5.zPosition = 2
+                
+                trajectory1.fillColor = .systemGray2
+                trajectory1.strokeColor = .systemGray2
+                trajectory2.fillColor = .systemGray2
+                trajectory2.strokeColor = .systemGray2
+                trajectory3.fillColor = .systemGray2
+                trajectory3.strokeColor = .systemGray2
+                trajectory4.fillColor = .systemGray2
+                trajectory4.strokeColor = .systemGray2
+                trajectory5.fillColor = .systemGray2
+                trajectory5.strokeColor = .systemGray2
+                
+                addChild(trajectory1)
+                addChild(trajectory2)
+                addChild(trajectory3)
+                addChild(trajectory4)
+                addChild(trajectory5)
+        
         backgroundColor = SKColor.init(red: 0.078, green: 0, blue: 0.184, alpha: 1)
         score2.fontName = "Menlo"
         score2.fontSize = frame.size.height * 0.04
@@ -88,6 +119,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
         
         score2.text = String(livello2)
         addChild(score2)
+        
         
         
         createBorder()
@@ -102,6 +134,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
         self.scene?.physicsWorld.contactDelegate = self
 
 
+        setUpTrajectoryPosition()
         
     }
     
@@ -450,6 +483,7 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
                
               
                 if(tiro){
+                    
                     let location = touch.location(in: self)
                     
                     var x = originalPlayerPosition.x - player2.position.x
@@ -489,6 +523,9 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
                                                     player2.position.y = (originalPlayerPosition.y - myNewY)
                                                 }
                     }
+                    
+                    placeDots(ro: ro, location: location, tetaLocation: tetaLocation)
+
 
 //                    if(location.y > 60 && location.y < 150 ){
 //                        if(location.x > 100 && location.x < 330){
@@ -502,18 +539,27 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
                     
            
                     
-                    let traiettoria = SKShapeNode(rectOf: CGSize(width: 2.5, height: 2.5))
-                    traiettoria.position = CGPoint(x: player2.position.x, y: player2.position.y)
-                    traiettoria.zPosition = 10
-                    addChild(traiettoria)
-                    traiettoria.run(SKAction.moveBy(x: originalPlayerPosition.x - player2.position.x, y: originalPlayerPosition.y - player2.position.y, duration: 0.1),  completion: {
-                        traiettoria.removeFromParent()
+//                    let traiettoria = SKShapeNode(rectOf: CGSize(width: 2.5, height: 2.5))
+//                    traiettoria.position = CGPoint(x: player2.position.x, y: player2.position.y)
+//                    traiettoria.zPosition = 10
+//                    addChild(traiettoria)
+//                    traiettoria.run(SKAction.moveBy(x: originalPlayerPosition.x - player2.position.x, y: originalPlayerPosition.y - player2.position.y, duration: 0.1),  completion: {
+//                        traiettoria.removeFromParent()
             
-            })
+//            })
                 }
                 
             }
         }
+    
+    func setUpTrajectoryPosition(){
+            trajectory1.position = originalPlayerPosition
+            trajectory2.position = originalPlayerPosition
+            trajectory3.position = originalPlayerPosition
+            trajectory4.position = originalPlayerPosition
+            trajectory5.position = originalPlayerPosition
+        }
+    
         
         override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
             
@@ -522,6 +568,8 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
                 var deltaY = originalPlayerPosition.y - player2.position.y
                 
                 player2.physicsBody?.applyImpulse(CGVector(dx: deltaX, dy: deltaY))
+                
+                setUpTrajectoryPosition()
                 
                 tiro = false
                 lastTimerCounter = timerCounter
@@ -532,6 +580,9 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
         }
     
     func costruttore2(){
+        
+        addTrajectory()
+        
         switch livello2{
         case 6:
             createBorder()
@@ -665,6 +716,41 @@ class Livello2 : SKScene, SKPhysicsContactDelegate{
             }
         }
     }
+    
+
+        
+        func addTrajectory(){
+            addChild(trajectory1)
+            addChild(trajectory2)
+            addChild(trajectory3)
+            addChild(trajectory4)
+            addChild(trajectory5)
+        }
+    
+    func placeDots(ro: CGFloat, location: CGPoint, tetaLocation: CGFloat){
+            let myFraction = ro/5
+            
+            checkQuadrante(ro: ro, location: location, tetaLocation: tetaLocation, myTrajectory: trajectory1, myDistance: myFraction)
+            checkQuadrante(ro: ro, location: location, tetaLocation: tetaLocation, myTrajectory: trajectory2, myDistance: myFraction*2)
+            checkQuadrante(ro: ro, location: location, tetaLocation: tetaLocation, myTrajectory: trajectory3, myDistance: myFraction*3)
+            checkQuadrante(ro: ro, location: location, tetaLocation: tetaLocation, myTrajectory: trajectory4, myDistance: myFraction*4)
+            checkQuadrante(ro: ro, location: location, tetaLocation: tetaLocation, myTrajectory: trajectory5, myDistance: myFraction*5)
+         
+        }
+        
+        func checkQuadrante(ro: CGFloat, location: CGPoint, tetaLocation: CGFloat, myTrajectory: SKShapeNode, myDistance: CGFloat){
+                let myNewX = (myDistance*cos(-tetaLocation))
+                let myNewY = (myDistance*sin(-tetaLocation))
+                if(location.x < size.width*0.5){
+                    myTrajectory.position.x = (originalPlayerPosition.x - myNewX)
+                    myTrajectory.position.y = (originalPlayerPosition.y - myNewY)
+                } else {
+                    myTrajectory.position.x = (originalPlayerPosition.x + myNewX)
+                    myTrajectory.position.y = (originalPlayerPosition.y - myNewY)
+                }
+        }
+    
+    
     
     
 }
