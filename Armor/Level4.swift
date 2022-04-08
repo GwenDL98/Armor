@@ -36,4 +36,9 @@ class Level4 : SKScene{
         nodo.position = CGPoint(x: frame.size.width/2, y: frame.size.height/1.4)
         addChild(nodo)
     }
+    
+    func curva2(){
+        let path2 = UIBezierPath()
+        
+    }
 }
