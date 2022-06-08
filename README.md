@@ -1,6 +1,6 @@
 # Armor
 Armor is a quick time event game. 
-On the screen you are going to see someelemtents:
+On the screen you are going to see some elemtents:
 - Player: a small green ball in the lower part of the scene;
 - Planet: a bigger green gall in the upper part with levels in it;
 - Orbit: colorful semicircles that protecta the Planet.
